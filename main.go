@@ -7,23 +7,31 @@ import (
 	"strings"
 )
 
+func countWords (inputString string) map[string]int {
+	// initialization map with key as string and value as int
+	wordCount := make(map[string]int)
+
+	cleanInputString := strings.TrimSpace(inputString)
+
+	for _, char := range cleanInputString {
+		wordCount[string(char)] += 1
+		fmt.Println(string(char))
+	}
+
+	return wordCount
+}
+
 func main() {
-	fmt.Println("\n", strings.Repeat("-", 20), "\n")
+	fmt.Println("\n", strings.Repeat("-", 20))
 	fmt.Println("Mini challange 2 - Calculate Words")
-	fmt.Println("\n", strings.Repeat("-", 20), "\n")
+	fmt.Println("\n", strings.Repeat("-", 20))
 
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Print("Please input your words: ")
 	inputString, _ := reader.ReadString('\n')
 
-	cleanInputString := strings.TrimSpace(inputString)
-
-	wordCount := make(map[string]int)
-
-	for _, char := range cleanInputString {
-		wordCount[string(char)]++
-	}
+	wordCount := countWords(inputString)
 
 	fmt.Println(wordCount)
 }
