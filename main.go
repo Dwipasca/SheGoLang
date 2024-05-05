@@ -67,25 +67,25 @@ func main () {
 	}
 
 	for index, name := range names {
-	
 		if (name == search) {
 			foundStudent = append(foundStudent, students[index])
 		}
 	}
 
 	for index, id := range ids {
-
 		if (id == searchId) {
 			foundStudent = append(foundStudent, students[index])
 		}
 	}
 	
+	printResultDataSearch(foundStudent)
+}
+
+func printResultDataSearch (foundStudent []Student) {
 	if len(foundStudent) > 0 {
 		fmt.Println("\nResult : ")
 		fmt.Println(strings.Repeat("-", 20))
-
 		for _, student := range foundStudent {
-	
 			fmt.Println("ID : ", student.id)
 			fmt.Println("Name : ", student.name)
 			fmt.Println("Job : ", student.job)
@@ -98,5 +98,4 @@ func main () {
 		fmt.Println("No student found with the Name or ID you type")
 		fmt.Println(strings.Repeat("-", 20))
 	}
-	
 }
