@@ -1,9 +1,102 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+type Student struct {
+	id 		int
+	name	string
+	address	string
+	job		string
+	reason 	string
+	
+}
 
 func main () {
 
-	fmt.Println("Mini challange 1")
+	var students = []Student {
+		{
+			id : 1,
+			name: "Dwi Pasca",
+			address: "Palu, Sulawesi Tengah",
+			job: "Frontend Dev",
+			reason: "want to become full stack and golang demand is so high",
+		},
+		{
+			id : 2,
+			name: "Jane Shepard",
+			address: "Earth",
+			job: "Guardian",
+			reason: "I'm commander shepard not programmer",
+		},
+		{
+			id : 3,
+			name: "Benezia",
+			address: "Coral Island",
+			job: "Gardener",
+			reason: "never enroll to golang class",
+		},
+	}
+
+	var names = []string{}
+	var ids = []int{}
+	var foundStudent []Student 
+
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Print("Search data by Name or ID : ")
+	search, _ := reader.ReadString('\n')
+	search = strings.TrimSpace(search)
+
+	if search == "" {
+		fmt.Println("Please insert name or id student")
+		fmt.Println("Example: Type Dwi or 1 in your keyboard")
+		return 
+	}
+	
+	searchId, _ := strconv.Atoi(search)
+
+	for _, std := range students {
+		names = append(names, std.name)
+		ids = append(ids, std.id)
+	}
+
+	for index, name := range names {
+	
+		if (name == search) {
+			foundStudent = append(foundStudent, students[index])
+		}
+	}
+
+	for index, id := range ids {
+
+		if (id == searchId) {
+			foundStudent = append(foundStudent, students[index])
+		}
+	}
+	
+	if len(foundStudent) > 0 {
+		fmt.Println("\nResult : ")
+		fmt.Println(strings.Repeat("-", 20))
+
+		for _, student := range foundStudent {
+	
+			fmt.Println("ID : ", student.id)
+			fmt.Println("Name : ", student.name)
+			fmt.Println("Job : ", student.job)
+			fmt.Println("Address : ", student.address)
+			fmt.Println("Reason : ", student.reason)
+		}
+		fmt.Println( strings.Repeat("-", 20))
+	} else {
+		fmt.Println(strings.Repeat("-", 20))
+		fmt.Println("No student found with the Name or ID you type")
+		fmt.Println(strings.Repeat("-", 20))
+	}
 	
 }
