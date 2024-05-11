@@ -25,7 +25,7 @@ func main () {
 			name: "Dwi Pasca",
 			address: "Palu, Sulawesi Tengah",
 			job: "Frontend Dev",
-			reason: "want to become full stack and golang demand is so high",
+			reason: "want to become full stack and the demand for Golang is very high",
 		},
 		{
 			id : 2,
@@ -55,10 +55,10 @@ func main () {
 
 	if search == "" {
 		fmt.Println("Please insert name or id student")
-		fmt.Println("Example: Type Dwi or 1 in your keyboard")
+		fmt.Println("Example: Type Dwi Pasca or 1 in your keyboard")
 		return 
 	}
-	
+	// convert string to int
 	searchId, _ := strconv.Atoi(search)
 
 	for _, std := range students {
